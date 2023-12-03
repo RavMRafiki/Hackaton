@@ -9052,6 +9052,7 @@ function Md({ handleDataChange: e }) {
           }),
         ],
       }),
+      v.jsx("h2", { children: "Typ przewodu" }),
       v.jsx("div", {
         className: "form-minor",
         children: n[t].map((s, c) =>
@@ -9407,32 +9408,32 @@ function Vd(e) {
                     ],
                   }),
                 }),
-                v.jsx("div", { children: "CableType" }),
+                v.jsx("div", { children: "Typ kabla" }),
                 v.jsx("div", {
                   className: "response-data",
                   children: l.cableType,
                 }),
-                v.jsx("div", { children: "Circuit" }),
+                v.jsx("div", { children: "Przewód" }),
                 v.jsx("div", {
                   className: "response-data",
                   children: l.circuit,
                 }),
-                v.jsx("div", { children: "Number of cores" }),
+                v.jsx("div", { children: "Liczba żył" }),
                 v.jsxs("div", {
                   className: "response-data",
                   children: [l.numberOfCores, "x", l.przekroj],
                 }),
-                v.jsx("div", { children: "Number of cores loaded" }),
+                v.jsx("div", { children: "Liczba obciążonych żył" }),
                 v.jsx("div", {
                   className: "response-data",
                   children: l.numberOfCoresLoaded,
                 }),
-                v.jsx("div", { children: "Installation method" }),
+                v.jsx("div", { children: "Sposób instalacji" }),
                 v.jsx("div", {
                   className: "response-data",
                   children: l.installationMethod,
                 }),
-                v.jsx("div", { children: "Reference method" }),
+                v.jsx("div", { children: "Kod metody" }),
                 v.jsx("div", {
                   className: "response-data",
                   children: l.referenceMethod,
@@ -9459,25 +9460,37 @@ function Wd() {
     c.preventDefault(), n(!0);
     let h = "a";
     l[0] == "YAKXS" && (h = "b");
-    const m = await (
-      await fetch(
-        "http://ec2-54-227-117-32.compute-1.amazonaws.com:8080/filter-cables",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            material: h,
-            isolation: l[1],
-            coresLoaded: l[2],
-            typeOfInstalation: l[4].toString(),
-            temperature: l[5].toString(),
-            soilResistivity: l[6].toString(),
-            power: l[7].toString(),
-            cos: 0.8,
-          }),
-        }
-      )
-    ).json();
+    Android.sendData(p,l[1],l[2].toString(),l[4].toString(),l[5].toString(),l[6].toString(),"5000",0.8)
+//    const m = await (
+//      await fetch(
+//        "http://ec2-54-227-117-32.compute-1.amazonaws.com:8080/filter-cables",
+//        {
+//          method: "POST",
+//          headers: { "Content-Type": "application/json" },
+//          body: JSON.stringify({
+//            material: h,
+//            isolation: l[1],
+//            coresLoaded: l[2],
+//            typeOfInstalation: l[4].toString(),
+//            temperature: l[5].toString(),
+//            soilResistivity: l[6].toString(),
+//            power: l[7].toString(),
+//            cos: 0.8,
+//          }),
+//        }
+//      )
+//    ).json();
+    m =     {
+                "cableType": "YKY 0,6/1kV",
+                "circuit": "1 fazowy",
+                "numberOfCores": 3,
+                "numberOfCoresLoaded": 2,
+                "installationMethod": "kabel wielożyłowy bezpośrednio w gruncie",
+                "referenceMethod": "D2",
+                "conductorCrossSections" : "50",
+                "przekrój" : "5"
+
+            }.json()
     r(m);
   }
   function u(c, h) {
